@@ -16,7 +16,7 @@ module.exports = {
 
   //mensajes para el login
   msg_login: {
-    new: 'Priner usuario creado',
+    first: 'Priner usuario creado',
     ok: 'OK',
     incorrect: 'Usuario o contraseña incorrectos'
   }

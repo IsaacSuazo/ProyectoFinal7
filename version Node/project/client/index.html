@@ -20,18 +20,28 @@
     </div>
     <script src="js/jquery.js"></script>
     <script>
+        $(document).ready(function() {
+            $.get('/api/user/firstuser', function(res) {
+
+                if(res.msg == 'Priner usuario creado'){
+                    console.log(res.msg+'\n'+res.user.email);
+                }else{
+                    console.log(res.msg);
+                }
+
+            })
+        })
         $('.loginButton').on('click', function(event) {
             var mail = $('#user').val()
             var pass = $('#pass').val()
-            //console.log('click al login')
             if (mail != "" && pass != "") {
-                console.log('click al login, entro al if')
-                $.post('/api/user/login',{email: mail, password: pass}, function(response) {
-                    console.log(response)
-                    if (response.msg == "OK") {
+                //console.log('click al login, entro al if')
+                $.post('/api/user/login',{email: mail, password: pass}, function(res) {
+                    let respuesta = res.msg;
+                    if (respuesta == 'OK') {
                         window.location.href = "http://localhost:3000/main.html"
                     }else{
-                      alert('Error! usuario o contraseña incorrectos')
+                        alert(respuesta)
                     }
                 })
             } else {

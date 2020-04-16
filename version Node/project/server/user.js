@@ -33,7 +33,7 @@ function login(req, res) {
       return res.status(500).send({msg: 'Error al realizar la peticion: '+err})
     }
     if(user[0] == null){
-      return res.status(404).send({msg: MSGS.msg_login.incorrect})
+      res.send({msg: MSGS.msg_login.incorrect, user: user})
     }else{
       res.status(200).send({msg: MSGS.msg_login.ok, user: user})
     }
@@ -58,7 +58,7 @@ function firstUser(req, res) {
                 res.status(500).send({msg: 'Error al ingresar un nuevo usuario... '+err})
               }else{
                 res.status(200).send({
-                  msg: MSGS.msg_login.new,
+                  msg: MSGS.msg_login.first,
                   user: userStored
                 })
               }
